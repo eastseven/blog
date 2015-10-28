@@ -4,10 +4,12 @@
 
 # Site
 title: EastSeven's Blog
-subtitle:
-description:
+subtitle: 全栈学徒自习室
+description: 全栈学徒
 author: East Seven
+email: eastseven@foxmail.com
 language: zh-CN
+keywords: java,web,linux
 timezone:
 
 # URL
@@ -62,6 +64,18 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: http://hexo.io/plugins/
+plugins:  
+- hexo-generator-feed
+- hexo-generator-sitemap
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+
+sitemap:
+  path: sitemap.xml
+ 
 ## Themes: http://hexo.io/themes/
 theme: modernist
 
@@ -71,3 +85,11 @@ deploy:
   type: git
   repo: git@github.com:eastseven/eastseven.github.io.git
   branch: master
+
+## https://github.com/coneycode/hexo-git-backup
+# backup
+backup:
+  type: git
+  repository:
+    github: git@github.com:eastseven/blog.git,master
+    gitcafe: git@github.com:eastseven/blog.git,master

@@ -1,6 +1,11 @@
 title: install ecshop with php5.2
 date: 2015-08-17 08:43:14
-tags:[php5.2,ecshop,centos7]
+tags:
+ - php
+ - php5.2
+ - ecshop
+ - centos7
+categories: guide
 ---
 
 ### 准备
@@ -44,6 +49,7 @@ tags:[php5.2,ecshop,centos7]
 
 	yum install libxml2 libxml2-devel gd gd-devel autoconf
     yum install libjpeg libjpeg-devel libpng libpng-devel
+    yum install openssl openssl-devel
 
 
 3.2 如果configure的时候还是报找不到libjpeg或者libpng，则需如下操作
@@ -61,11 +67,16 @@ tags:[php5.2,ecshop,centos7]
 
 3.4 编译
 
-    ./configure --with-gd --with-mysql=/usr/bin/mysql --enable-fastcgi --enable-fpm --with-jpeg-dir=/usr/lib
+    ./configure --with-gd --with-mysql=/usr/bin/mysql --enable-fastcgi --enable-fpm --with-jpeg-dir=/usr/lib --with-openssl
     make
     make install
 
 4.5 后续操作
 
     修改php.ini，short_open_tag = On
+    修改php.ini，cgi.fix_pathinfo=1
     关闭防火墙：systemctl stop firewalld
+    修改php-fpm.conf，取消<value name="user">nobody</value>及<value name="group">nobody</value>的注释，否则启动php-fpm会失败
+    配置nginx的php
+4.5.1 nginx 403问题		
+如果权限和配置都设置正确的情况下，还是报403，可能是SELinux开启的问题，关掉即可 [传送门](https://www.centos.org/docs/5/html/5.1/Deployment_Guide/sec-sel-enable-disable.html)
