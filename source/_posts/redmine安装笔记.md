@@ -17,10 +17,10 @@ categories: note
 安装必要的软件包
     
     yum install ruby ruby-devel 
-    yum curl crul-devel gcc 
-    yum libxml2 libxml2-devel 
-    yum openssl openssl-devel 
-    yum ImageMagick ImageMagick-devel
+    yum install curl crul-devel gcc 
+    yum install libxml2 libxml2-devel 
+    yum install openssl openssl-devel 
+    yum install ImageMagick ImageMagick-devel
     
 更换ruby安装源
 
