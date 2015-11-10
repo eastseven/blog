@@ -16,15 +16,16 @@ categories: note
 ### 准备
 安装必要的软件包
     
-    yum install ruby ruby-devel 
-    yum install curl crul-devel gcc 
-    yum install libxml2 libxml2-devel 
-    yum install openssl openssl-devel 
-    yum install ImageMagick ImageMagick-devel
+    yum install -y ruby ruby-devel 
+    yum install -y curl curl-devel gcc 
+    yum install -y libxml2 libxml2-devel 
+    yum install -y openssl openssl-devel 
+    yum install -y ImageMagick ImageMagick-devel
     
 更换ruby安装源
 
 	gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/
+	gem install bundler
 	
 ### 安装
 1.下载 [redmine 3.1.1](http://www.redmine.org/releases/redmine-3.1.1.zip) [官方安装文档](http://www.redmine.org/projects/redmine/wiki/RedmineInstall)
@@ -67,7 +68,6 @@ categories: note
     
 5.开始安装
 
-    gem install bundler
     bundle install --without development test  
     bundle exec rake generate_secret_token
     
@@ -111,6 +111,39 @@ categories: note
     	root REDMINE_PATH/public;
     	passenger_enabled on;
 	}    
+
+创建nginx用户，并加入sudoer
+
+    useradd nginx
+    passwd nginx
+    
+将nginx加入到sudo中
+
+    visudo
+    
+    ## Next comes the main part: which users can run what software on
+    ## which machines (the sudoers file can be shared between multiple
+    ## systems).
+    ## Syntax:
+    ##
+    ##      user    MACHINE=COMMANDS
+    ##
+    ## The COMMANDS section may have other options added to it.
+    ##
+    ## Allow root to run any commands anywhere
+    root    ALL=(ALL)       ALL
+    nginx   ALL=(ALL)       ALL
+
+修改nginx.conf，将user改为nginx
+
+修改redmine文件夹权限
+
+    chmod -R 775 redmine-3.1.1
+    chown -R nginx.nginx redmine-3.1.1
+
+切换用户
+
+    su nginx
 
 2.启动
 
