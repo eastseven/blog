@@ -147,15 +147,15 @@ categories: note
 
 2.启动
 
-    /your/path/nginx
+    /opt/nginx/sbin/nginx
     
 3.关闭
 
-    /your/path/nginx -s stop
+    /opt/nginx/sbin/nginx -s stop
 
 4.重启    
 
-    /your/path/nginx -s reload
+    /opt/nginx/sbin/nginx -s reload
 	
 ### 参考
 - [针对于新入门的开发者，如何在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境](https://ruby-china.org/wiki/mac-nginx-passenger-rails)
