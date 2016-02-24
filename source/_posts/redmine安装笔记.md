@@ -3,7 +3,6 @@ date: 2015-11-08 10:44:27
 tags:
  - nginx
  - centos
- - centos
 categories: note
 ---
 
